@@ -1,52 +1,92 @@
-/* Container setup */
+/* General Layout */
 .container {
-  height: 100vh;
-  display: grid;
-  place-items: center;
-  position: relative;
-  overflow: hidden;
-  background-color: #fceff5; /* Optional soft background */
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  position: relative;
+  overflow: hidden;
+  background-color: #fceff5;
 }
 
-/* Dancing GIF positioning */
+/* Dancing GIFs */
 .dancing-gif {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 120px;
-  height: auto;
-  opacity: 0.8;
-  /* --- FIX APPLIED HERE --- */
-  z-index: 1; /* Changed from 0 to 1 to ensure GIFs are visible above the background */
-  /* ------------------------ */
-  pointer-events: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 120px;
+  height: auto;
+  opacity: 0.8;
+  z-index: 1;
+  pointer-events: none;
 }
 
 .dancing-gif.left {
-  left: 5%;
+  left: 5%;
 }
 
 .dancing-gif.right {
-  right: 5%;
+  right: 5%;
 }
 
-/* Envelope z-index */
+/* Envelope Setup */
 .envelope-wrapper {
-  position: relative;
-  z-index: 2; /* This keeps the envelope layered above the GIFs */
+  position: relative;
+  z-index: 2;
+  width: 300px;
+  height: 200px;
+  cursor: pointer;
 }
 
-/* Optional: tweak envelope/letter styles */
 .envelope {
-  background: #fff;
-  box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
-  border-radius: 8px;
-  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  height: 100%;
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+}
+
+/* Letter Styling */
+.letter {
+  position: absolute;
+  top: 100%; /* start hidden inside the envelope */
+  left: 50%;
+  transform: translateX(-50%) scale(0.95);
+  opacity: 0;
+  transition: all 0.6s ease;
+  z-index: 3;
+  width: 90%;
+  background: #fff;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  padding: 20px;
+  border-radius: 8px;
 }
 
 .letter .text {
-  font-family: 'Georgia', serif;
-  font-size: 1rem;
-  color: #333;
-  line-height: 1.6;
+  font-family: 'Georgia', serif;
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Heart (optional decorative element) */
+.heart {
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 50px;
+  background: red;
+  clip-path: polygon(50% 0%, 100% 35%, 82% 100%, 50% 75%, 18% 100%, 0% 35%);
+  z-index: 2;
+}
+
+/* Animate letter popping out */
+.envelope-wrapper.flap .letter {
+  top: -30%; /* pop above envelope */
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
 }
