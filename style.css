@@ -1,136 +1,39 @@
-:root {
-  --primary: #fff;
-  --bg-color: #ffe0b2;
-  --bg-envelope-color: #f5edd1;
-  --envelope-tab: #ecdeb8;
-  --envelope-cover: #e6cfa7;
-  --shadow-color: rgba(0, 0, 0, 0.2);
-  --txt-color: #333;
-  --heart-color: rgb(252, 8, 231);
-}
-
 body {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  background: var(--bg-color);
+  background-color: #ffe0b2;
+  font-family: "Times New Roman", serif;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Times New Roman', serif;
-}
-
-.container {
   height: 100vh;
-  display: grid;
-  place-items: center;
 }
 
-.envelope-wrapper {
-  background: var(--bg-envelope-color);
-  box-shadow: 0 0 40px var(--shadow-color);
-  position: relative;
-}
-
-.envelope {
-  position: relative;
-  width: 380px;
-  height: 280px;
-}
-
-.envelope::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  z-index: 2;
-  border-top: 160px solid var(--envelope-tab);
-  border-right: 190px solid transparent;
-  border-left: 190px solid transparent;
-  transform-origin: top;
-  transition: all 0.5s ease-in-out 0.7s;
-}
-
-.envelope::after {
-  content: "";
-  position: absolute;
-  z-index: 2;
-  width: 0;
-  height: 0;
-  border-top: 160px solid transparent;
-  border-right: 190px solid var(--envelope-cover);
-  border-bottom: 120px solid var(--envelope-cover);
-  border-left: 190px solid var(--envelope-cover);
-}
-
-.letter {
-  position: absolute;
-  right: 18%;
-  bottom: 0;
-  width: 64%;
-  height: 96%;
-  background: var(--primary);
-  text-align: left;
-  transition: all 1s ease-in-out;
-  box-shadow: 0 0 5px var(--shadow-color);
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
   padding: 20px;
+}
+
+.side-gif {
+  width: 100px;
+  height: auto;
+}
+
+.letter-box {
+  background-color: #fff;
+  border: 2px solid #d1bfa7;
+  padding: 20px;
+  width: 400px;
+  height: 400px;
   overflow-y: auto;
-  font-size: 13px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
 
-.letter .text {
-  color: var(--txt-color);
-  font-family: 'Times New Roman', serif;
+.text {
+  font-size: 16px;
+  color: #333;
   line-height: 1.6;
-}
-
-.letter .text p {
-  margin: 10px 0;
-}
-
-.heart {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 20px;
-  height: 20px;
-  background: var(--heart-color);
-  z-index: 4;
-  transform: translate(-50%, -20%) rotate(45deg);
-  transition: transform 0.5s ease-in-out 1s;
-  box-shadow: 0 1px 6px var(--shadow-color);
-  cursor: pointer;
-}
-
-.heart:before,
-.heart:after {
-  content: "";
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  background-color: var(--heart-color);
-  border-radius: 50%;
-}
-
-.heart:before {
-  top: -10px;
-}
-
-.heart:after {
-  right: -10px;
-}
-
-.flap .envelope::before {
-  transform: rotateX(180deg);
-  z-index: 0;
-}
-
-.flap .envelope .letter {
-  bottom: 120px;
-  transform: scale(1.4);
-  transition-delay: 1s;
-}
-
-.flap .heart {
-  transform: rotate(90deg);
-  transition-delay: 0.4s;
 }
