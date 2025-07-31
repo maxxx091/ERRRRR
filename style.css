@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #ffe0b2;
+  background-color: #ffe0b2; /* Light orange */
   font-family: "Times New Roman", serif;
   display: flex;
   align-items: center;
