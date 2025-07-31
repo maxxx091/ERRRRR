@@ -1,6 +1,6 @@
 :root {
   --primary: #fff;
-  --bg-color: #ffe0b2; /* light orange background */
+  --bg-color: #ffe0b2;
   --bg-envelope-color: #f5edd1;
   --envelope-tab: #ecdeb8;
   --envelope-cover: #e6cfa7;
@@ -34,8 +34,8 @@ body {
 
 .envelope {
   position: relative;
-  width: 350px;
-  height: 260px;
+  width: 380px;
+  height: 280px;
 }
 
 .envelope::before {
@@ -43,9 +43,9 @@ body {
   position: absolute;
   top: 0;
   z-index: 2;
-  border-top: 150px solid var(--envelope-tab);
-  border-right: 175px solid transparent;
-  border-left: 175px solid transparent;
+  border-top: 160px solid var(--envelope-tab);
+  border-right: 190px solid transparent;
+  border-left: 190px solid transparent;
   transform-origin: top;
   transition: all 0.5s ease-in-out 0.7s;
 }
@@ -56,25 +56,25 @@ body {
   z-index: 2;
   width: 0;
   height: 0;
-  border-top: 150px solid transparent;
-  border-right: 175px solid var(--envelope-cover);
-  border-bottom: 110px solid var(--envelope-cover);
-  border-left: 175px solid var(--envelope-cover);
+  border-top: 160px solid transparent;
+  border-right: 190px solid var(--envelope-cover);
+  border-bottom: 120px solid var(--envelope-cover);
+  border-left: 190px solid var(--envelope-cover);
 }
 
 .letter {
   position: absolute;
-  right: 20%;
+  right: 18%;
   bottom: 0;
-  width: 60%;
-  height: 100%;
+  width: 64%;
+  height: 96%;
   background: var(--primary);
   text-align: left;
   transition: all 1s ease-in-out;
   box-shadow: 0 0 5px var(--shadow-color);
-  padding: 15px;
+  padding: 20px;
   overflow-y: auto;
-  font-size: 12px;
+  font-size: 13px;
 }
 
 .letter .text {
@@ -90,4 +90,47 @@ body {
 .heart {
   position: absolute;
   top: 50%;
-  left:
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  background: var(--heart-color);
+  z-index: 4;
+  transform: translate(-50%, -20%) rotate(45deg);
+  transition: transform 0.5s ease-in-out 1s;
+  box-shadow: 0 1px 6px var(--shadow-color);
+  cursor: pointer;
+}
+
+.heart:before,
+.heart:after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: var(--heart-color);
+  border-radius: 50%;
+}
+
+.heart:before {
+  top: -10px;
+}
+
+.heart:after {
+  right: -10px;
+}
+
+.flap .envelope::before {
+  transform: rotateX(180deg);
+  z-index: 0;
+}
+
+.flap .envelope .letter {
+  bottom: 120px;
+  transform: scale(1.4);
+  transition-delay: 1s;
+}
+
+.flap .heart {
+  transform: rotate(90deg);
+  transition-delay: 0.4s;
+}
