@@ -1,192 +1,52 @@
-/* General Body and Container Setup */
-body {
-    margin: 0;
-    overflow: hidden; /* Prevent scrollbars if content goes beyond viewport */
-    background-color: #fceff5; /* Optional soft background from your original CSS */
-    display: flex; /* Use flexbox for centering */
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-    min-height: 100vh; /* Ensure it takes full viewport height */
-    font-family: 'Arial', sans-serif; /* Default font for the body */
-}
-
+/* Container setup */
 .container {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100vh; /* Ensure container takes full height for centering envelope */
-    overflow: hidden; /* Important to contain dancing GIFs */
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  position: relative;
+  overflow: hidden;
+  background-color: #fceff5; /* Optional soft background */
 }
 
 /* Dancing GIF positioning */
 .dancing-gif {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 120px;
-    height: auto;
-    opacity: 0.8;
-    z-index: 1; /* Changed from 0 to 1 to ensure GIFs are visible above the background */
-    pointer-events: none; /* Allows clicking through GIFs to the envelope */
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 120px;
+  height: auto;
+  opacity: 0.8;
+  /* --- FIX APPLIED HERE --- */
+  z-index: 1; /* Changed from 0 to 1 to ensure GIFs are visible above the background */
+  /* ------------------------ */
+  pointer-events: none;
 }
 
 .dancing-gif.left {
-    left: 5%;
+  left: 5%;
 }
 
 .dancing-gif.right {
-    right: 5%;
+  right: 5%;
 }
 
-/* Envelope Wrapper - Controls the overall interaction and Z-index */
+/* Envelope z-index */
 .envelope-wrapper {
-    position: relative;
-    width: 300px; /* Define a fixed width for the envelope */
-    height: 200px; /* Define a fixed height for the envelope */
-    z-index: 2; /* Keeps the envelope layered above the GIFs */
-    cursor: pointer; /* Indicate it's clickable */
-    /* For the flap animation: */
-    transform-style: preserve-3d; /* Allows for 3D transforms on children */
-    transition: transform 0.5s ease-in-out; /* Smooth lift/move on open */
+  position: relative;
+  z-index: 2; /* This keeps the envelope layered above the GIFs */
 }
 
-/* Envelope Body */
+/* Optional: tweak envelope/letter styles */
 .envelope {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
-    /* Crucial: Hides the letter when it's inside the envelope */
-    overflow: hidden;
-    /* Transition for the letter to smoothly appear/disappear from view */
-    transition: background 0.3s ease, transform 0.5s ease-in-out;
-}
-
-/* Envelope Flap (Top part that opens) */
-/* We'll use pseudo-elements for the flap for a simpler HTML structure */
-.envelope::before,
-.envelope::after {
-    content: '';
-    position: absolute;
-    border-style: solid;
-    border-width: 0;
-    z-index: 3; /* Flap should be above the letter and envelope body */
-    transition: transform 0.5s ease-in-out;
-    transform-origin: top; /* Important for rotating from the top edge */
-}
-
-/* Bottom triangular part of the envelope */
-.envelope::before {
-    border-width: 100px 150px 0 150px; /* Adjust to match envelope width/height */
-    border-color: #f0f0f0 transparent transparent transparent; /* Lighter shade or same as envelope */
-    bottom: 0;
-    left: 0;
-}
-
-/* Top triangular flap (this is the one that opens) */
-.envelope::after {
-    border-width: 100px 150px 0 150px; /* Same dimensions as bottom */
-    border-color: #e0e0e0 transparent transparent transparent; /* Slightly darker shade for flap */
-    top: 0;
-    left: 0;
-    /* Initial state: folded down */
-    transform: rotateX(0deg);
-}
-
-/* Letter inside the envelope */
-.letter {
-    position: absolute;
-    background-color: #f7f7f7; /* Light background for the letter */
-    border: 1px solid #ddd;
-    box-sizing: border-box; /* Include padding and border in width/height */
-    padding: 20px;
-    width: 90%; /* Slightly smaller than envelope to show border */
-    max-height: 80%; /* Limit height, allow scrolling if text is too long */
-    overflow-y: auto; /* Enable vertical scrolling for long text */
-    /* Position the letter initially inside the envelope, slightly down */
-    top: 55%; /* Start slightly below center to imply it's inside */
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0.9); /* Center and slightly shrink initially */
-    z-index: 1; /* Letter is behind the top flap but above the envelope back */
-    transition: all 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Bounce effect */
-    opacity: 0; /* Initially hidden */
-    pointer-events: none; /* Cannot interact with letter when hidden */
+  background: #fff;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 20px;
 }
 
 .letter .text {
-    font-family: 'Georgia', serif;
-    font-size: 1rem;
-    color: #333;
-    line-height: 1.6;
-}
-
-/* Heart element (assuming it's positioned over the envelope) */
-.heart {
-    position: absolute;
-    width: 60px;
-    height: 60px;
-    background-color: #ff69b4; /* Pink heart */
-    top: 30px; /* Position it on the envelope */
-    left: 50%;
-    transform: translateX(-50%) rotate(-45deg);
-    border-radius: 50% 50% 0 50%; /* Creates a heart shape */
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-    z-index: 4; /* Above the flap */
-    transition: transform 0.5s ease-in-out, top 0.5s ease-in-out, opacity 0.5s ease-in-out;
-    pointer-events: none; /* Allows clicking through to the envelope */
-}
-
-/* Heart specific pseudo-elements for full heart shape */
-.heart::before,
-.heart::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: #ff69b4;
-    border-radius: 50%;
-}
-
-.heart::before {
-    top: -50%;
-    left: 0;
-}
-
-.heart::after {
-    top: 0;
-    left: 50%;
-}
-
-/* --- State when 'flap' class is added (on click) --- */
-
-/* Rotate the top flap of the envelope to open it */
-.envelope-wrapper.flap .envelope::after {
-    transform: rotateX(180deg); /* Opens the flap fully */
-    z-index: 1; /* Move flap behind the letter once open */
-}
-
-/* Animate the letter sliding out */
-.envelope-wrapper.flap .letter {
-    top: -100px; /* Move it up significantly, adjust as needed */
-    transform: translate(-50%, 0) scale(1); /* Reset scale, slide up */
-    opacity: 1; /* Make it visible */
-    pointer-events: auto; /* Allow interaction with letter content */
-}
-
-/* Animate the heart moving up and fading out */
-.envelope-wrapper.flap .heart {
-    top: -80px; /* Move heart up and away */
-    opacity: 0; /* Fade out the heart */
-    transform: translateX(-50%) rotate(-45deg) scale(0.5); /* Shrink slightly */
-}
-
-/* Optional: Slightly lift/rotate the whole envelope-wrapper for effect */
-.envelope-wrapper.flap {
-    transform: translateY(-20px) rotateX(5deg); /* Lift and tilt slightly */
+  font-family: 'Georgia', serif;
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.6;
 }
