@@ -2,53 +2,61 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Happy Girlfriends Day</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet" />
 </head>
 <body>
   <div class="container">
-    
-    <!-- Left dancing GIF -->
-    <img src="left-dancer.gif" class="dancing-gif left" alt="Dancing Girl Left">
-
     <div class="envelope-wrapper">
       <div class="envelope">
         <div class="letter">
           <div class="text">
-            <p>Happy Girlfriends Day Mahal,</p>
-            <p>I know that we are not that official yet in a sense, but still I want to greet you pa rin.</p>
-            <p>I have made this short poem nung isang gabi na gusto kong sabihin na sobrang mahal kita — but yeah, tinula ko na lang nun nung gabing iyon. Mwehehehee~</p>
-            <br>
-            <p><em>
-              As we have our bond each night,<br>
-              I can’t help but feel light.<br><br>
-
-              As I fall in love and feel you in my core,<br>
-              I don’t know.<br>
-              but appreciate you more.<br><br>
-
-              The unceasing thoughts of you in my mind,<br>
-              concludes, no other soul I’ll ever find.<br><br>
-
-              The words I can’t help but say,<br>
-              is a word I can use every day.<br><br>
-
-              And as you sleep well and tight,<br>
-              I’ll say this phrase<br>
-              because I know I’m right.<br><br>
-
+            <strong>Dear Sophia,</strong>
+            <p>
+              Happy Girlfriends Day Mahal, I know that we are not that official yet in a sense, but still I want to greet you pa rin.  
+              I have made this short poem nung isang gabi na gusto kong sabihin na sobrang mahal kita but yeah tinula ko na lang nun nung gabing iyon.  
+              mwehehehee
+            </p>
+            <p>
+              As we have our bond each night. <br>
+              I can’t help but feel light.
+            </p>
+            <p>
+              As I fall in love and feel you in my core <br>
+              I don’t know. <br>
+              but appreciate you more.
+            </p>
+            <p>
+              The unceasing thoughts of you in my mind. <br>
+              concludes, no other soul I’ll ever find.
+            </p>
+            <p>
+              The words I can’t help but say, <br>
+              is a word I can use every day.
+            </p>
+            <p>
+              And as you sleep well and tight <br>
+              I’ll say this phrase  <br>
+              because I know I’m right.
+            </p>
+            <p>
               Oh my dear Sophia, I love you so so much 😔
-            </em></p>
+            </p>
           </div>
         </div>
       </div>
       <div class="heart"></div>
     </div>
-
-    <!-- Right dancing GIF -->
-    <img src="right-dancer.gif" class="dancing-gif right" alt="Dancing Girl Right">
-    
   </div>
+
+  <script>
+    const envelope = document.querySelector('.envelope-wrapper');
+    envelope.addEventListener('click', () => {
+      envelope.classList.toggle('flap');
+    });
+  </script>
 </body>
 </html>
