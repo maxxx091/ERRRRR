@@ -16,7 +16,9 @@
   width: 120px;
   height: auto;
   opacity: 0.8;
-  z-index: 0;
+  /* --- FIX APPLIED HERE --- */
+  z-index: 1; /* Changed from 0 to 1 to ensure GIFs are visible above the background */
+  /* ------------------------ */
   pointer-events: none;
 }
 
@@ -31,7 +33,7 @@
 /* Envelope z-index */
 .envelope-wrapper {
   position: relative;
-  z-index: 2;
+  z-index: 2; /* This keeps the envelope layered above the GIFs */
 }
 
 /* Optional: tweak envelope/letter styles */
